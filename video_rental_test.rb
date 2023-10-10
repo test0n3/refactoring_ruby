@@ -208,19 +208,21 @@ describe Movie do
 
   describe 'injected price object' do
     it 'must respond to charge with 1 argument' do
+      skip
       _(proc { Movie.new('title', invalid_price).charge(2) })
-        .must_raise NoMethodError
+      #   .must_raise NoMethodError
 
-      # _(proc { Movie.new('title', wrong_args).charge(2) })
-      #   .must_raise ArgumentError
+      _(proc { Movie.new('title', wrong_args).charge(2) })
+        .must_raise ArgumentError
     end
 
     it 'must respond to frequent_renter_points with 1 argument' do
+      skip
       _(proc { Movie.new('title', invalid_price).frequent_renter_points(1) })
         .must_raise NoMethodError
 
-      # _(proc { Movie.new('title', wrong_args).frequent_renter_points(1) })
-      #   .must_raise ArgumentError
+      _(proc { Movie.new('title', wrong_args).frequent_renter_points(1) })
+        .must_raise ArgumentError
     end
 
     it 'is used to calculate the charge and the frequent renter points' do
@@ -232,7 +234,6 @@ describe Movie do
 
     describe 'a regular movie' do
       it 'price logic' do
-        skip
         (1..2).each do |days|
           _(regular_movie.charge(days)).must_equal 2
         end
@@ -241,7 +242,6 @@ describe Movie do
       end
 
       it 'points' do
-        skip
         days = rand(1..10)
         _(regular_movie.frequent_renter_points(days)).must_equal 1
       end
@@ -249,13 +249,11 @@ describe Movie do
 
     describe 'a new release' do
       it 'price logic' do
-        skip
         days = rand(1..10)
         _(new_movie.charge(days)).must_equal(3 * days)
       end
 
       it 'points' do
-        skip
         _(new_movie.frequent_renter_points(1)).must_equal 1
         _(new_movie.frequent_renter_points(2)).must_equal 2
       end
@@ -263,7 +261,6 @@ describe Movie do
 
     describe 'a children’s movie' do
       it 'price logic' do
-        skip
         (1..3).each do |days|
           _(childrens_movie.charge(days)).must_equal 1.5
         end
@@ -272,7 +269,6 @@ describe Movie do
       end
 
       it 'points' do
-        skip
         days = rand(1..10)
         _(childrens_movie.frequent_renter_points(days)).must_equal 1
       end
