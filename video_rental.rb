@@ -8,11 +8,8 @@ class Movie
 
   attr_reader :title, :price_code
 
-  # attr_accessor :price_code
-
   def initialize(title, price_code)
     @title = title
-    # @price_code = price_code
     self.price_code = price_code
   end
 
@@ -29,30 +26,25 @@ class Movie
   end
 
   def charge(days_rented)
-    # result = 0
-    case price_code
-    when REGULAR
-      @price.charge(days_rented)
-      # result += 2
-      # result += (days_rented - 2) * 1.5 if days_rented > 2
-    when NEW_RELEASE
-      # result += days_rented * 3
-      @price.charge(days_rented)
-    when CHILDRENS
-      # result += 1.5
-      # result += (days_rented - 3) * 1.5 if days_rented > 3
-      @price.charge(days_rented)
-    end
-    # result
+    @price.charge(days_rented)
   end
 
   def frequent_renter_points(days_rented)
-    price_code == NEW_RELEASE && days_rented > 1 ? 2 : 1
+    @price.frequent_renter_points(days_rented)
+  end
+end
+
+# module to share frequent_renter_points method
+module DefaultPrice
+  def frequent_renter_points(_days_rented)
+    1
   end
 end
 
 # class for Regular type movies
 class RegularPrice
+  include DefaultPrice
+
   def charge(days_rented)
     if days_rented > 2
       2 + 1.5 * (days_rented - 2)
@@ -67,10 +59,16 @@ class NewReleasePrice
   def charge(days_rented)
     days_rented * 3
   end
+
+  def frequent_renter_points(days_rented)
+    days_rented > 1 ? 2 : 1
+  end
 end
 
 # class for Children type movies
 class ChildrensPrice
+  include DefaultPrice
+
   def charge(days_rented)
     if days_rented > 3
       1.5 + 1.5 * (days_rented - 3)
