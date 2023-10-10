@@ -130,22 +130,20 @@ describe Customer do
     end
 
     it 'returns html output' do
-      skip
       _(subject.html_statement).must_match(%r{<h1>.*</h1>})
     end
 
     it 'prints the correct values formatted as HTML' do
-      skip
       _(subject.html_statement).must_equal <<~HTML
-        <h1>Rentals for <em>Smith</em></h1>
+        <h1>Rental Record for <em>Smith</em></h1>
         <p><ul>
         <li>Regent: 2</li>
         <li>Regent: 9.5</li>
         <li>Chills: 4.5</li>
         <li>Newton: 18</li>
         </ul></p>
-        <p>You owe <em>34.0</em></p>
-        <p>Congratulations, you earned <em>5 frequent renter points!</em></p>
+        <p>Amount owed is <em>34.0</em></p>
+        <p>You earned <em>5</em> frequent renter points</p>
       HTML
         .chomp
     end
