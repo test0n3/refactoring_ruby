@@ -72,18 +72,10 @@ class Customer
   private
 
   def total_charge
-    result = 0
-    @rentals.each do |element|
-      result += element.charge
-    end
-    result
+    @rentals.inject(0) { |result, rental| result + rental.charge }
   end
 
   def total_frequent_renter_points
-    result = 0
-    @rentals.each do |element|
-      result += element.frequent_renter_points
-    end
-    result
+    @rentals.inject(0) { |result, rental| result + rental.frequent_renter_points }
   end
 end
