@@ -8,3 +8,5 @@ Contains code example of Chapter 1 in the book [Refactoring: Ruby Edition](https
 
 Test file is base on [fanaugen/refactoring_ruby](https://github.com/fanaugen/refactoring_ruby/blob/master/chapter1/video_rental_test.rb), which is also related to the book but tests a different interpretation of the program.
 Check the History of the files to view the evolution of the program, application of refactoring.
+
+Resume (in Spanish) of the action taken during the chapter: [Resume chapter 1](./Refactoring%20Ruby%20Edition.md)
